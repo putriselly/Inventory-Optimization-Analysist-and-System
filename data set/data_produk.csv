@@ -1,0 +1,11 @@
+﻿ID_Produk,Nama_Produk,Kategori,Harga_Modal,Stok_Minimum
+PRD001,Kopi Susu,Minuman,8000,8
+PRD002,Teh Lemon,Minuman,9000,10
+PRD003,Roti Cokelat,Makanan,3500,12
+PRD004,Roti Keju,Makanan,5000,8
+PRD005,Cokelat Batang,Camilan,22000,5
+PRD006,Keripik Pisang,Camilan,9000,7
+PRD007,Air Mineral,Minuman,3000,15
+PRD008,Kopi Bubuk 250g,Bahan Minuman,28000,4
+PRD009,Madu 250ml,Bahan Minuman,16000,4
+PRD010,Teh Premium,Bahan Minuman,33000,3
