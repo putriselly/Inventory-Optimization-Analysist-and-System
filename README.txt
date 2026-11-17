@@ -1,113 +1,119 @@
 # Inventory Optimization System
 
-A Python-based inventory management and optimization project designed to help retail businesses monitor stock levels and make better restocking decisions.
+A Python-based inventory management and optimization system designed to help retail businesses monitor stock levels, analyze sales performance, and make better restocking decisions.
+
+## Project Overview
+
+This project focuses on analyzing retail sales and product data to support inventory management decisions. It uses historical sales information to evaluate product performance, monitor stock availability, and identify products that require restocking.
+
+The project also provides an interactive dashboard built with Streamlit to make the analysis easier to understand.
 
 ## Features
-- Retail sales data analysis using Pandas.
-- Product sales performance visualization.
-- Transaction trend analysis by hour.
-- Inventory monitoring.
-- Reorder Point (ROP) calculation.
-- Restock recommendations and order quantity estimation.
-- Interactive dashboard built with Streamlit.
 
-## Technologies
+- **Sales Data Analysis** – Examine sales data and identify patterns and trends.
+- **Product Performance Analysis** – Identify the best-selling and lowest-selling products.
+- **Transaction Trend Analysis** – Analyze transaction activity by date and hour.
+- **Inventory Monitoring** – Compare current stock levels with Reorder Points (ROP).
+- **Restock Recommendations** – Identify products that need restocking.
+- **Order Quantity Estimation** – Calculate the quantity of products that should be reordered.
+- **Interactive Dashboard** – Visualize analysis results through Streamlit.
+
+## Technologies Used
+
 - Python
 - Pandas
 - Streamlit
-- Matplotlib (if used in the analysis)
-
-## Project Objective
-To help businesses identify products that need restocking before they run out of stock, based on historical sales data and inventory calculations.
-
-# HASIL ANALISIS DATA PENJUALAN DAN PRODUK
-
-## A. Analisis Data Penjualan
-
-### 1. Insight dan Temuan
-
-Berdasarkan proses pemeriksaan dan analisis pada dataset penjualan, diperoleh beberapa temuan sebagai berikut:
-
-1. **Tipe data tanggal dan waktu** pada kolom `Tanggal_Waktu` perlu dikonversi menjadi tipe data datetime agar dapat digunakan dalam analisis berdasarkan tanggal maupun waktu transaksi.
-
-2. **Kolom `Harga_Satuan`** perlu dikonversi menjadi tipe data float agar dapat digunakan dalam perhitungan statistik dan analisis numerik.
-
-3. **Kolom `Total_Harga`** juga perlu dikonversi menjadi tipe data float agar format datanya sesuai dengan kebutuhan analisis.
-
-4. **Kolom `ID_Produk`** memiliki 40 nilai duplikat. Namun, duplikasi tersebut belum tentu merupakan kesalahan karena satu produk dapat muncul dalam beberapa transaksi. Oleh karena itu, perlu dilakukan pemeriksaan lebih lanjut untuk memastikan apakah duplikasi tersebut merupakan kondisi yang wajar atau kesalahan pencatatan.
-
-5. **Kolom `Jumlah_Terjual`** memiliki nilai 5 dan 6 yang masing-masing hanya muncul satu kali, sedangkan nilai mediannya adalah 2. Kedua nilai tersebut tergolong jarang ditemukan sehingga dapat menjadi indikasi adanya kemungkinan kesalahan pencatatan. Namun, hal ini masih berupa dugaan karena pembelian dalam jumlah yang lebih besar tetap memungkinkan terjadi.
-
-6. **Kolom `Harga_Satuan`** memiliki selisih antara mean dan median sekitar Rp3.000 atau 16%. Nilai mean yang lebih tinggi daripada median menunjukkan bahwa terdapat kemungkinan beberapa nilai harga yang relatif tinggi sehingga memengaruhi rata-rata. Meskipun demikian, kondisi ini belum cukup untuk menyimpulkan adanya kesalahan data.
-
-7. **Kolom `Harga_Satuan`** memiliki nilai minimum Rp18.000 dan maksimum Rp55.000. Rentang harga tersebut terlihat cukup lebar, tetapi masih dapat dianggap wajar karena dataset mencakup berbagai jenis produk dengan harga yang berbeda-beda.
-
-8. **Coefficient of Variation (CV) pada kolom `Harga_Satuan`** mencapai sekitar 62,1%. Nilai tersebut menunjukkan tingkat variasi harga yang cukup tinggi. Namun, tingginya variasi dapat disebabkan oleh perbedaan harga antarproduk sehingga belum tentu menunjukkan adanya kesalahan pencatatan.
-
-9. **Coefficient of Variation (CV) pada kolom `Total_Harga`** mencapai sekitar 56,4%. Variasi tersebut dapat dipengaruhi oleh perbedaan harga satuan setiap produk serta jumlah barang yang dibeli dalam setiap transaksi. Oleh karena itu, nilai CV yang tinggi belum tentu menunjukkan adanya ketidakwajaran data.
-
-### 2. Analisis Tren Penjualan
-
-Analisis tren penjualan dilakukan untuk mengidentifikasi pola transaksi berdasarkan waktu, sehingga dapat digunakan sebagai bahan pertimbangan dalam menentukan strategi promosi dan peningkatan pelayanan toko.
-
-Berdasarkan hasil analisis, diperoleh beberapa temuan:
-
-1. **Berdasarkan tanggal transaksi**, jumlah transaksi terbanyak terjadi pada 3 November 2025, yaitu sebanyak 3 transaksi. Hal ini menunjukkan bahwa tanggal tersebut memiliki aktivitas transaksi yang relatif lebih tinggi dibandingkan tanggal lainnya dalam dataset.
-
-2. **Berdasarkan waktu transaksi**, aktivitas transaksi paling banyak terjadi sekitar pukul 18.00 atau 6 sore, dengan total 5 transaksi. Temuan ini menunjukkan bahwa waktu sore menjelang malam merupakan salah satu periode dengan aktivitas transaksi yang cukup tinggi.
-
-### 3. Kesimpulan dan Saran
-
-Berdasarkan hasil pemeriksaan dan analisis data penjualan, ditemukan beberapa nilai yang memiliki karakteristik tertentu dan perlu mendapatkan perhatian lebih lanjut.
-
-Pada kolom `Jumlah_Terjual`, nilai 5 dan 6 masing-masing hanya muncul satu kali, sedangkan median jumlah barang terjual adalah 2. Hal ini menunjukkan bahwa kedua nilai tersebut relatif jarang ditemukan. Meskipun demikian, belum dapat dipastikan bahwa nilai tersebut merupakan kesalahan pencatatan karena pembelian dalam jumlah besar masih mungkin terjadi.
-
-Pada kolom `Harga_Satuan`, nilai mean lebih besar daripada median dengan selisih sekitar Rp3.000 atau 16%. Selain itu, terdapat rentang harga yang cukup lebar, yaitu antara Rp18.000 hingga Rp55.000. Kondisi tersebut kemungkinan dipengaruhi oleh perbedaan harga antarproduk sehingga belum dapat dikategorikan sebagai kesalahan data.
-
-Sementara itu, nilai Coefficient of Variation (CV) pada gabungan seluruh harga satuan mencapai sekitar 62,1%, sedangkan CV pada kolom `Total_Harga` mencapai sekitar 56,4%. Tingginya variasi tersebut belum tentu menunjukkan adanya ketidakwajaran karena harga satuan setiap produk berbeda dan jumlah barang yang dibeli dalam setiap transaksi juga bervariasi.
-
-Secara keseluruhan, hasil pemeriksaan belum menunjukkan bukti yang cukup untuk melakukan koreksi maupun penghapusan data pada kolom-kolom tersebut. Oleh karena itu, nilai yang ditemukan tetap dipertahankan. Beberapa temuan dicatat sebagai indikasi yang memerlukan verifikasi lebih lanjut apabila tersedia informasi pendukung, seperti katalog produk, nota transaksi, atau riwayat harga.
-
-Berdasarkan hasil analisis tren penjualan, aktivitas transaksi terbanyak tercatat pada tanggal 3 November 2025 dan sekitar pukul 18.00. Temuan ini dapat dijadikan bahan pertimbangan dalam menyusun strategi penjualan. Toko dapat mempertimbangkan pelaksanaan promosi pada awal bulan untuk menarik minat pelanggan. Selain itu, peningkatan kualitas pelayanan pada sore hingga malam hari juga dapat dilakukan, misalnya dengan memastikan ketersediaan staf dan kesiapan produk agar pelanggan memperoleh pelayanan yang optimal ketika aktivitas transaksi meningkat.
+- Matplotlib
 
 ---
 
-## B. Analisis Data Produk
+# Data Analysis Results
 
-### 1. Insight dan Temuan
+## A. Sales Data Analysis
 
-Berdasarkan proses pemeriksaan dan analisis pada dataset produk, diperoleh beberapa temuan sebagai berikut:
+### 1. Data Quality Inspection
 
-1. **Kolom `Harga_Modal`** perlu dikonversi menjadi tipe data float agar dapat digunakan dalam perhitungan statistik dan analisis numerik.
+Several observations were identified during the data inspection and cleaning process:
 
-2. **Coefficient of Variation (CV) pada kolom `Harga_Modal`** mencapai sekitar 78%. Nilai ini menunjukkan variasi harga modal yang cukup tinggi. Namun, kondisi tersebut belum tentu menunjukkan adanya kesalahan data karena setiap produk dapat memiliki harga modal yang berbeda-beda.
+1. The `Tanggal_Waktu` column needed to be converted into datetime format to support date and time analysis.
+2. The `Harga_Satuan` column needed to be converted into float format for numerical calculations.
+3. The `Total_Harga` column also needed to be converted into float format.
+4. The `ID_Produk` column contained 40 duplicate values. However, these duplicates were not necessarily errors because the same product could appear in multiple transactions.
+5. The `Jumlah_Terjual` column contained values of 5 and 6, each appearing only once, while the median was 2. These values were considered unusual but could still represent valid purchases.
+6. The mean of `Harga_Satuan` was approximately Rp3,000 or 16% higher than its median. This could indicate the influence of relatively high-priced products.
+7. The minimum and maximum values of `Harga_Satuan` were Rp18,000 and Rp55,000, respectively. This variation could be explained by differences in product prices.
+8. The Coefficient of Variation (CV) of `Harga_Satuan` was approximately 62.1%, indicating considerable price variation.
+9. The CV of `Total_Harga` was approximately 56.4%, potentially influenced by differences in unit prices and quantities purchased.
 
-3. **Coefficient of Variation (CV) pada kolom `Stok_Minimum`** mencapai sekitar 50%. Nilai tersebut menunjukkan adanya variasi jumlah stok minimum antarproduk. Hal ini masih dapat dianggap wajar karena setiap produk memiliki tingkat permintaan dan kebutuhan persediaan yang berbeda.
+These findings were not sufficient to conclude that the data contained recording errors. Therefore, suspicious values were retained pending further verification.
 
-### 2. Analisis Produk (Market Basket Analysis / Produk Terlaris)
+### 2. Sales Trend Analysis
 
-Analisis produk dilakukan untuk mengetahui produk dengan tingkat penjualan tertinggi dan terendah. Informasi ini dapat digunakan sebagai bahan pertimbangan dalam menentukan strategi penjualan dan pengelolaan persediaan.
+Sales trends were analyzed to identify transaction patterns based on date and time.
 
-Berdasarkan hasil analisis penjualan, diperoleh beberapa temuan:
+Key findings:
 
-1. **Produk dengan jumlah penjualan tertinggi** adalah Roti Cokelat, dengan total penjualan sebanyak 24 buah.
+- **Busiest Transaction Date:** November 3, 2025, with 3 transactions.
+- **Busiest Transaction Hour:** Around 18:00 (6 PM), with 5 transactions.
 
-2. **Produk dengan jumlah penjualan terendah** adalah Kopi Bubuk 250g, dengan total penjualan sebanyak 4 buah.
+These findings suggest that early-month promotions and improved service availability during the evening could be considered as potential sales strategies.
 
-### 3. Kesimpulan dan Saran
+### 3. Conclusion and Recommendations
 
-Berdasarkan proses pembersihan dan analisis data produk, dapat disimpulkan bahwa terdapat variasi nilai yang cukup tinggi pada beberapa kolom numerik, khususnya harga modal produk. Nilai CV pada kolom `Harga_Modal` mencapai sekitar 78%, yang menunjukkan tingkat variasi harga modal antarproduk cukup tinggi. Namun, kondisi tersebut belum tentu menandakan adanya kesalahan data karena setiap produk dapat memiliki harga modal yang berbeda-beda. Oleh karena itu, nilai-nilai tersebut tidak dapat langsung dianggap sebagai kesalahan tanpa pemeriksaan lebih lanjut.
+The sales data inspection did not provide sufficient evidence to justify deleting or correcting the observed values.
 
-Selain itu, hasil analisis penjualan menunjukkan bahwa Roti Cokelat merupakan produk dengan jumlah penjualan tertinggi, yaitu sebanyak 24 buah. Sementara itu, Kopi Bubuk 250g menjadi produk dengan jumlah penjualan terendah, yaitu sebanyak 4 buah.
+Several values showed considerable variation, particularly in unit prices and total transaction amounts. However, these variations could be explained by differences in products and purchase quantities.
 
-Secara keseluruhan, hasil analisis memberikan gambaran mengenai variasi harga modal serta tingkat penjualan setiap produk. Informasi tersebut dapat dimanfaatkan sebagai bahan pertimbangan dalam menentukan strategi penjualan dan pengelolaan persediaan.
+Recommendations:
 
-Berdasarkan hasil analisis tersebut, terdapat beberapa saran yang dapat dipertimbangkan:
+- Consider running promotional campaigns during periods with higher transaction activity.
+- Ensure sufficient staff availability during evening hours.
+- Maintain product and transaction records to support future data verification.
+- Continue monitoring sales trends to identify more consistent purchasing patterns.
 
-1. **Meningkatkan persediaan Roti Cokelat.** Mengingat Roti Cokelat merupakan produk dengan jumlah penjualan tertinggi, toko dapat mempertimbangkan untuk menambah persediaannya guna memenuhi permintaan pelanggan dan mengurangi risiko kehabisan stok.
+## B. Product Data Analysis
 
-2. **Mempertimbangkan penambahan variasi produk sejenis.** Tingginya penjualan Roti Cokelat dapat menjadi pertimbangan untuk menyediakan variasi produk roti lainnya, seperti roti stroberi, roti keju, atau varian rasa lainnya guna menarik minat pelanggan.
+### 1. Data Quality Inspection
 
-3. **Melakukan evaluasi terhadap persediaan Kopi Bubuk 250g.** Karena produk ini memiliki jumlah penjualan terendah, toko dapat mengevaluasi jumlah persediaan yang disediakan agar tidak terjadi penumpukan stok. Namun, produk tersebut tidak harus langsung dikurangi atau dihilangkan karena masih terdapat kemungkinan adanya permintaan dari pelanggan tertentu.
+Several observations were identified during the product data inspection:
 
-4. **Melakukan pemantauan penjualan secara berkala.** Toko sebaiknya terus memantau perkembangan penjualan setiap produk agar keputusan penambahan maupun pengurangan persediaan didasarkan pada pola permintaan yang lebih konsisten.
+1. The `Harga_Modal` column needed to be converted into float format for numerical calculations.
+2. The CV of `Harga_Modal` was approximately 78%, indicating considerable variation in product costs.
+3. The CV of `Stok_Minimum` was approximately 50%, indicating differences in minimum stock requirements across products.
+
+These variations were considered potentially reasonable because products can have different costs and inventory requirements.
+
+### 2. Product Sales Performance
+
+Product sales were analyzed to identify the best-selling and lowest-selling products.
+
+Key findings:
+
+| Product | Total Units Sold |
+|---|---:|
+| Roti Cokelat | 24 |
+| Kopi Bubuk 250g | 4 |
+
+- **Best-Selling Product:** Roti Cokelat, with 24 units sold.
+- **Lowest-Selling Product:** Kopi Bubuk 250g, with 4 units sold.
+
+### 3. Conclusion and Recommendations
+
+The analysis showed that product costs and minimum stock requirements varied across products. These differences were not necessarily errors, as each product could have different characteristics and inventory needs.
+
+Roti Cokelat recorded the highest sales, while Kopi Bubuk 250g recorded the lowest sales.
+
+Based on these findings, the following recommendations were identified:
+
+1. **Increase Roti Cokelat Inventory:** Consider increasing its stock availability to support customer demand and reduce the risk of stockouts.
+2. **Consider Similar Product Variations:** Introduce other bread variations, such as strawberry or cheese, to attract more customers.
+3. **Evaluate Kopi Bubuk 250g Inventory:** Review its stock levels to avoid unnecessary inventory accumulation, without immediately discontinuing the product.
+4. **Monitor Product Sales Regularly:** Track sales performance to ensure inventory decisions are based on consistent demand patterns.
+
+---
+
+## Project Objective
+
+The main objective of this project is to help retail businesses identify products that need restocking before they run out of stock.
+
+By combining historical sales analysis, inventory monitoring, and Reorder Point (ROP) calculations, the system provides information to support more effective inventory management decisions.
