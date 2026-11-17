@@ -2,6 +2,9 @@
 
 A Python-based inventory management and optimization project designed to help retail businesses monitor stock levels and make better restocking decisions.
 
+# Dashboard streamlit
+https://inventory-optimization-analysist-and-system-2s5hrswejp8z9ptveg.streamlit.app/
+
 ## Features
 - Retail sales data analysis using Pandas.
 - Product sales performance visualization.
@@ -111,3 +114,4 @@ Berdasarkan hasil analisis tersebut, terdapat beberapa saran yang dapat dipertim
 3. **Melakukan evaluasi terhadap persediaan Kopi Bubuk 250g.** Karena produk ini memiliki jumlah penjualan terendah, toko dapat mengevaluasi jumlah persediaan yang disediakan agar tidak terjadi penumpukan stok. Namun, produk tersebut tidak harus langsung dikurangi atau dihilangkan karena masih terdapat kemungkinan adanya permintaan dari pelanggan tertentu.
 
 4. **Melakukan pemantauan penjualan secara berkala.** Toko sebaiknya terus memantau perkembangan penjualan setiap produk agar keputusan penambahan maupun pengurangan persediaan didasarkan pada pola permintaan yang lebih konsisten.
+
